@@ -1,0 +1,13 @@
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<ul>
+    {% for event in event_list %}
+
+        {{  event.Eventname }} {{ event.Description }}
+
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

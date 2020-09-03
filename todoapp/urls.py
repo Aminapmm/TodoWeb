@@ -1,7 +1,9 @@
-from django.urls import path
-from .views import index
-
+from django.urls import path, re_path
+from .views import *
 
 urlpatterns = [
-    path('', index, name='index')
+
+    path('', TodoList.as_view(template_name='list.html'), name='index'),
+    path('<slug:slug>', TodoList.as_view, name='todolist'),
+    re_path('^login/.*$', login, name='login'),
 ]
