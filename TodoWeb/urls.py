@@ -18,15 +18,12 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include
-from todoapp.views import login
-from django.contrib.auth.views import LoginView
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('todo/', include('todoapp.urls')),
-                  path('accounts/', include('django.contrib.auth.urls')),
-                  path('', TemplateView.as_view(template_name='home.html'), name='home')
+                  path('account/', include('account.urls')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
