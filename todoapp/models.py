@@ -2,7 +2,9 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 from model_utils import FieldTracker
-from . import jalali
+from extensions import converter
+
+
 #TODO: Do some improvments on django.admin
 #TODO: Add Profile Photo field for users to show it in their panel.
 
@@ -43,4 +45,7 @@ class Todo(models.Model):
         if self.tracker.changed is not None:
             self.last_time_edited = datetime.now()
             super(Todo, self).save(*args, **kwargs)
+
+    def shamsidate(self):
+        return converter.convert_to_jalali(self.event_datetime)
 

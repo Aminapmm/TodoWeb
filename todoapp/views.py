@@ -1,9 +1,12 @@
-from django.views.decorators.http import require_http_methods, require_GET, require_POST
-from django.http import HttpRequest, HttpResponse
+
+
 from .models import Todo, Category, User
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+
+
 class TodoList(LoginRequiredMixin,ListView):
 
     paginate_by = 5
@@ -15,7 +18,8 @@ class TodoList(LoginRequiredMixin,ListView):
         user = self.request.user
         return user.events.filter(author=user)
 
-
+class TodoDetail(LoginRequiredMixin,DetailView):
+    model = Todo
 
 #TODO: Prepare The template,To Show The Events.
 #TODO: config the webapp for errors like 4xx,5xx
